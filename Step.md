@@ -18,8 +18,17 @@ docker ps
 
 docker logs python-frontend-app
 
+Ensure your EC2 Security Group allows inbound TCP port 8080 from your IP address
+
+<img width="1481" height="294" alt="image" src="https://github.com/user-attachments/assets/6974dca7-8b65-4522-b2ff-fa6206a746a5" />
+
+
+
 4. Open the application
 
 In your browser, visit:
 
 http://YOUR-EC2-PUBLIC-IP:8080
+
+<img width="1574" height="819" alt="image" src="https://github.com/user-attachments/assets/7f14dcf9-f1b1-4cb1-9bcf-305f891439e6" />
+
