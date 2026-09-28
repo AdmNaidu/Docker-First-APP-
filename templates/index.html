@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DevOps Service Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">PYTHON + FLASK</div>
+      <h1>Docker lab</h1>
+      <p>Adm Naidu Docker ,Azure ,AWs.</p>
+    </header>
+    <section class="panel">
+      <h2>Service health check</h2>
+      <p>Enter a service name and choose its current status.</p>
+      <form method="post">
+        <label for="service_name">Service name</label>
+        <input id="service_name" name="service_name" value="{{ service_name }}" placeholder="e.g. payment-api" required>
+        <label for="status">Service status</label>
+        <select id="status" name="status">
+          <option value="running" {% if status == 'running' %}selected{% endif %}>Running</option>
+          <option value="stopped" {% if status == 'stopped' %}selected{% endif %}>Stopped</option>
+          <option value="degraded" {% if status == 'degraded' %}selected{% endif %}>Degraded</option>
+        </select>
+        <button type="submit">Check status</button>
+      </form>
+      {% if result %}
+      <div class="result {% if result.status == 'running' %}healthy{% else %}warning{% endif %}">
+        <strong>{{ result.service_name }}</strong>
+        <span class="status">{{ result.status|capitalize }}</span>
+        <p>{{ result.message }}</p>
+      </div>
+      {% endif %}
+    </section>
+    <section class="stats">
+      <article><span>Backend</span><strong>Python / Flask</strong><small>Handles form submissions</small></article>
+      <article><span>Frontend</span><strong>HTML / CSS</strong><small>Rendered by Flask templates</small></article>
+      <article><span>Container port</span><strong>5000</strong><small>Map to an EC2 host port</small></article>
+    </section>
+    <footer>Learning demo only — not a production monitoring system.</footer>
+  </main>
+</body>
+</html>
